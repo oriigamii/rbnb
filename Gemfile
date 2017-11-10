@@ -37,7 +37,17 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Bcrypt
+gem 'bcrypt','~> 3.1.11', platforms: :ruby
+# gem 'bcrypt', '~> 3.1.10', require: false
+# if Bundler::WINDOWS
+#   gem 'bcrypt-ruby', '~> 3.0.0', require: false
+# else
+#   gem 'bcrypt', '~> 3.1.11', require: false
+# end
+# Devise authtication
+gem 'devise'
+gem 'devise-i18n'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -55,6 +65,8 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :production do
