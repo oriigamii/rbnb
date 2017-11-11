@@ -1,0 +1,30 @@
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4{style: "border-radius:0;"}
+  .navbar-brand
+    = link_to 'RBNB', root_path
+  %button.navbar-toggler{type:"button", data:{toggle:"collapse", target:"#navbarCollapse"}, aria:{controls: "navbarCollapse", expanded:"false", label:"Toggle nav"}}
+    %span.navbar-toggler-icon
+  #navbarCollapse.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto.my-2.my-lg-0
+      - if (!user_signed_in?)
+        %li.nav-item
+          .nav-link
+            = link_to 'Inscription', new_user_registration_path
+        %li.nav-item
+          .nav-link
+            =link_to 'Connexion', new_user_session_path
+      - else
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{role: "button", data:{toggle: "dropdown"}, aria:{haspopup: "true", expanded: "false"}}
+            = current_user.email
+          .dropdown-menu{aria: {labelledby: "navbarDropdown"}}
+            =link_to 'Mes items', root_path, class: "dropdown-item"
+            =link_to 'Mon profil', edit_user_registration_path, class: "dropdown-item"
+            .dropdown-divider
+            =link_to 'Déconnexion', destroy_user_session_path, :method => :delete, class: "dropdown-item"
+
+    -# TODO Search form connected to model & controller 
+    -# (needs indexing and search engine)
+    -#
+    -# = simple_form_for @Search, wrapper_html:{class: 'form-inline mt-2 mt-md-0'}, method: :get do |f|
+    -#   = f.input :q, class: "form-control mr-sm-2", placeholder: 'Search'
+    -#   = f.button :submit, "Search", class: "btn btn-outline-success my-2 my-sm-0"
