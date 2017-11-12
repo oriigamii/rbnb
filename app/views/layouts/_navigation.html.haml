@@ -1,26 +1,24 @@
-%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4{style: "border-radius:0;"}
-  .navbar-brand
-    = link_to 'RBNB', root_path
+%nav.navbar.navbar-expand-md.navbar-dark.bg-dark.align-items-center{style: "border-radius:0;"}
+  = link_to 'RBnB', root_path, class: "navbar-brand align-center"
   %button.navbar-toggler{type:"button", data:{toggle:"collapse", target:"#navbarCollapse"}, aria:{controls: "navbarCollapse", expanded:"false", label:"Toggle nav"}}
     %span.navbar-toggler-icon
   #navbarCollapse.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto.my-2.my-lg-0
+    %ul.navbar-nav.ml-auto.mt-2.mt-lg-0
       - if (!user_signed_in?)
         %li.nav-item
-          .nav-link
-            = link_to 'Inscription', new_user_registration_path
+          = link_to 'Inscription', new_user_registration_path, class: "nav-link"
         %li.nav-item
-          .nav-link
-            =link_to 'Connexion', new_user_session_path
+          =link_to 'Connexion', new_user_session_path, class: "nav-link"
       - else
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{role: "button", data:{toggle: "dropdown"}, aria:{haspopup: "true", expanded: "false"}}
-            = current_user.email
-          .dropdown-menu{aria: {labelledby: "navbarDropdown"}}
-            =link_to 'Mes items', root_path, class: "dropdown-item"
-            =link_to 'Mon profil', edit_user_registration_path, class: "dropdown-item"
-            .dropdown-divider
-            =link_to 'Déconnexion', destroy_user_session_path, :method => :delete, class: "dropdown-item"
+        %li.nav-item
+          .dropdown
+            %button#navbarDropdown.dropdown-toggle{role: "button", data:{toggle: "dropdown"}, aria:{haspopup: "true", expanded: "false"}}
+              = current_user.email
+            .dropdown-menu{aria: {labelledby: "navbarDropdown"}}
+              =link_to 'Mes items', root_path, class: "dropdown-item"
+              =link_to 'Mon profil', edit_user_registration_path, class: "dropdown-item"
+              .dropdown-divider
+              =link_to 'Déconnexion', destroy_user_session_path, :method => :delete, class: "dropdown-item"
 
     -# TODO Search form connected to model & controller 
     -# (needs indexing and search engine)
